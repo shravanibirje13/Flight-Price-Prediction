@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph View</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+        .container {
+            max-width: 90%;
+            margin: 20px auto;
+            background-color: white; /* Added background for better visibility */
+            padding: 20px;
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px; /* Added margin for better spacing */
+        }
+        a {
+            padding: 10px 20px;
+            background-color: #0d5c7b;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            display: inline-block; /* Ensures button looks good */
+            margin-top: 20px; /* Space between metrics and button */
+        }
+        a:hover {
+            background-color: #084655;
+        }
+        .metrics {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ model_choice | capitalize }} Graph</h1>
+        <div class="metrics">
+            <p>Mean Squared Error (MSE): <strong>{{ "%.2f"|format(mse) }}</strong></p>
+            <p>Average Actual Price: <strong>${{ "%.2f"|format(avg_price) }}</strong></p>
+            <p>Model Accuracy (R² Score): <strong>{{ "%.2f"|format(r2 * 100) }}</strong>%</p>
+        </div>
+        <img src="{{ url_for('static', filename=graph_path) }}" alt="Prediction Graph">
+       <!-- <a href="{{ url_for('predict', model_choice=model_choice) }}" class="button">Go Back</a>-->
+    </div>
+</body>
+</html>
